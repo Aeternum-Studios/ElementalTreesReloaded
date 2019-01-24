@@ -1,0 +1,45 @@
+name: "&6Gold Tree"
+model: pine-model
+
+log: GOLD_BLOCK
+leaves: YELLOW_STAINED_GLASS
+
+grows-on:
+- GRASS_BLOCK
+- DIRT
+
+item-material: JUNGLE_SAPLING
+
+growth-speed: 300
+
+drop-sapling: false
+
+drop-speed: 200
+
+leaf-decay: true
+
+xp-drop-on-finish-growing: 100
+
+play-lightning-animation: true
+
+particle-type: FLAME
+
+items:
+  '0':
+    item:
+      ==: org.bukkit.inventory.ItemStack
+      v: 1631
+      type: GOLD_BLOCK
+    weight: 1
+  '1':
+    item:
+      ==: org.bukkit.inventory.ItemStack
+      v: 1631
+      type: GOLD_INGOT
+    weight: 9
+  '2':
+    item:
+      ==: org.bukkit.inventory.ItemStack
+      v: 1631
+      type: GOLD_ORE
+    weight: 80

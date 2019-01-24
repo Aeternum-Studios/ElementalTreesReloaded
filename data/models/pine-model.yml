@@ -1,0 +1,36 @@
+layers:
+  1:
+  - "   "
+  - " O "
+  - "   "
+  2:
+  - " L "
+  - "LOL"
+  - " L "
+  3:
+  - "LLL"
+  - "LOL"
+  - "LLL"
+  4:
+  - "LLL"
+  - "LOL"
+  - "LLL"
+  5:
+  - "LLL"
+  - "LOL"
+  - "LLL"
+  6:
+  - " L "
+  - "LOL"
+  - " L "
+  7:
+  - " L "
+  - "LLL"
+  - " L "
+  8:
+  - "   "
+  - " L "
+  - "   "
+data:
+  log: "O"
+  leaves: "L"

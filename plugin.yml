@@ -1,0 +1,20 @@
+name: ElementalTreesReloaded
+main: industries.aeternum.elementaltreesreloaded.ElementalTrees
+version: 1.0
+description: Adds elemental trees to Minecraft
+author: BananaPuncher714
+api-version: 1.13
+softdepend:
+- "Multiverse-Core"
+depend:
+- "WorldGuard"
+- "WorldEdit"
+commands:
+  etree:
+    description: "Control the trees"
+    permission: "etree.admin"
+permissions:
+  etree.admin:
+    default: op
+  etree.bypass:
+    default: op

@@ -1,0 +1,7 @@
+# How many trees a user can plant by default, "etree.bypass" to bypass this limit
+tree-limit: 5
+
+# Blocks that the plugin will overwrite when generating a new tree
+grows-through:
+- AIR
+- GRASS

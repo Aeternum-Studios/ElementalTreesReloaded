@@ -1,0 +1,45 @@
+name: "&aApple Tree"
+model: default-model
+
+log: SPRUCE_LOG
+leaves: OAK_LEAVES
+
+grows-on:
+- GRASS_BLOCK
+- DIRT
+
+item-material: OAK_SAPLING
+
+growth-speed: 60
+
+drop-sapling: false
+
+drop-speed: 60
+
+leaf-decay: true
+
+xp-drop-on-finish-growing: 10
+
+play-lightning-animation: false
+
+particle-type: SMOKE
+
+items:
+  '0':
+    item:
+      ==: org.bukkit.inventory.ItemStack
+      v: 1631
+      type: ENCHANTED_GOLDEN_APPLE
+    weight: 1
+  '1':
+    item:
+      ==: org.bukkit.inventory.ItemStack
+      v: 1631
+      type: GOLDEN_APPLE
+    weight: 4
+  '2':
+    item:
+      ==: org.bukkit.inventory.ItemStack
+      v: 1631
+      type: APPLE
+    weight: 55

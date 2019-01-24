@@ -1,0 +1,42 @@
+layers:
+  1:
+  - "     "
+  - "     "
+  - "  O  "
+  - "     "
+  - "     "
+  2:
+  - "     "
+  - "     "
+  - "  O  "
+  - "     "
+  - "     "
+  3:
+  - "LLLLL"
+  - "LLLLL"
+  - "LLOLL"
+  - "LLLLL"
+  - "LLLLL"
+  4:
+  - " LLL "
+  - "LLLLL"
+  - "LLOLL"
+  - "LLLLL"
+  - " LLL "
+  5:
+  - "     "
+  - "  L  "
+  - " LGL "
+  - "  L  "
+  - "     "
+  6:
+  - "     "
+  - "  L  "
+  - " LLL "
+  - "  L  "
+  - "     "
+data:
+  log: "O"
+  leaves: "L"
+  additional-data:
+    "G": GLOWSTONE
