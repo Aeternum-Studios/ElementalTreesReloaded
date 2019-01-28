@@ -55,13 +55,7 @@ public class TreeManager implements Listener {
 			}
 		}
 	}
-	
-	protected void blockBreak( Block block ) {
-		for ( ElementalTree tree : trees ) {
-			tree.onBlockBreak( block.getLocation() );
-		}
-	}
-	
+
 	public void registerTree( ElementalTree tree ) {
 		getTrees( tree.getOwner() ).add( tree );
 		trees.add( tree );
@@ -126,23 +120,25 @@ public class TreeManager implements Listener {
 			file.delete();
 		}
 	}
-	
-	@EventHandler( priority = EventPriority.LOWEST, ignoreCancelled = true )
+
+	@EventHandler(priority = EventPriority.LOWEST, ignoreCancelled = true)
 	private void onBlockBreakEvent( BlockBreakEvent event ) {
-		blockBreak( event.getBlock() );
-	}
-	
-	@EventHandler( priority = EventPriority.LOWEST, ignoreCancelled = true )
-	private void onBlockBreakEvent( EntityExplodeEvent event ) {
-		for ( Block block : event.blockList() ) {
-			blockBreak( block );
+		for (ElementalTree tree : trees) {
+			tree.onBlockBreak( event );
 		}
 	}
-	
-	@EventHandler( priority = EventPriority.LOWEST, ignoreCancelled = true )
+
+	@EventHandler(priority = EventPriority.LOWEST, ignoreCancelled = true)
+	private void onBlockBreakEvent( EntityExplodeEvent event ) {
+		for (ElementalTree tree : trees) {
+			tree.onBlockBreak( event );
+		}
+	}
+
+	@EventHandler(priority = EventPriority.LOWEST, ignoreCancelled = true)
 	private void onBlockBreakEvent( BlockExplodeEvent event ) {
-		for ( Block block : event.blockList() ) {
-			blockBreak( block );
+		for (ElementalTree tree : trees) {
+			tree.onBlockBreak( event );
 		}
 	}
 	
