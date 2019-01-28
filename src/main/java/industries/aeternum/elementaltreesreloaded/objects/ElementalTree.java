@@ -6,11 +6,16 @@ import java.util.concurrent.ThreadLocalRandom;
 
 import org.bukkit.Location;
 import org.bukkit.Material;
+import org.bukkit.block.Block;
+import org.bukkit.event.block.BlockBreakEvent;
+import org.bukkit.event.block.BlockExplodeEvent;
+import org.bukkit.event.entity.EntityExplodeEvent;
 import org.bukkit.inventory.ItemStack;
 
 import industries.aeternum.elementaltreesreloaded.objects.animation.BlockAnimation;
 import industries.aeternum.elementaltreesreloaded.util.Util;
 
+@SuppressWarnings("Duplicates")
 public class ElementalTree {
 	protected TreeComponents components;
 	protected ElementalTreeTemplate template;
@@ -19,6 +24,7 @@ public class ElementalTree {
 	protected UUID uuid;
 	
 	private boolean remove = false;
+	private boolean decay = false;
 	
 	private int tick = 0;
 	
@@ -82,6 +88,7 @@ public class ElementalTree {
 			}
 			
 			if ( components.getLogs().isEmpty() ) {
+				decay = true;
 				if ( template.isLeafDecay() ) {
 					Location block = components.getBlocks().iterator().next();
 					block.getBlock().setType( Material.AIR );
@@ -101,16 +108,56 @@ public class ElementalTree {
 		return false;
 	}
 	
-	public void onBlockBreak( Location location ) {
-		if ( animation == null && components.getLogs().contains( location ) ) {
-			components.remove( location );
-			if ( components.getLogs().isEmpty() ) {
-				if ( template.isDropTree() ) {
-					location.getWorld().dropItem( location.clone().add( .5, .5, .5 ), template.getItem() );
-				}
+	public void onBlockBreak( BlockBreakEvent event ) {
+		Block b = event.getBlock();
+
+		if ( animation == null && components.getBlocks().contains( b.getLocation() ) && !decay ) {
+			// There's probably a better way to do this but it works.
+			components.getLogs().clear();
+
+			if ( template.isDropTree() ) {
+				b.getWorld().dropItem( b.getLocation().clone().add( .5, .5, .5 ), template.getItem() );
 			}
-		} else {
-			components.remove( location );
+		}
+
+		if( animation != null && components.getBlocks().contains( b.getLocation() ) ) {
+			event.setCancelled(true);
+		}
+	}
+
+	public void onBlockBreak( BlockExplodeEvent event ) {
+		for( Block b : event.blockList() ) {
+			if ( animation == null && components.getBlocks().contains( b.getLocation() ) && !decay ) {
+				components.getLogs().clear();
+
+				if ( template.isDropTree() ) {
+					b.getWorld().dropItem( b.getLocation().clone().add( .5, .5, .5 ), template.getItem() );
+				}
+
+				break;
+			}
+
+			if( animation != null && components.getBlocks().contains( b.getLocation() ) ) {
+				event.setCancelled(true);
+			}
+		}
+	}
+
+	public void onBlockBreak( EntityExplodeEvent event ) {
+		for( Block b : event.blockList() ) {
+			if ( animation == null && components.getBlocks().contains( b.getLocation() ) && !decay ) {
+				components.getLogs().clear();
+
+				if ( template.isDropTree() ) {
+					b.getWorld().dropItem( b.getLocation().clone().add( .5, .5, .5 ), template.getItem() );
+				}
+
+				break;
+			}
+
+			if( animation != null && components.getBlocks().contains( b.getLocation() ) ) {
+				event.setCancelled(true);
+			}
 		}
 	}
 	
