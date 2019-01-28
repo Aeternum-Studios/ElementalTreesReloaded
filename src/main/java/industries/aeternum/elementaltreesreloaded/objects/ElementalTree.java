@@ -24,6 +24,7 @@ public class ElementalTree {
 	protected UUID uuid;
 	
 	private boolean remove = false;
+	private boolean decay = false;
 	
 	private int tick = 0;
 	
@@ -87,6 +88,7 @@ public class ElementalTree {
 			}
 			
 			if ( components.getLogs().isEmpty() ) {
+				decay = true;
 				if ( template.isLeafDecay() ) {
 					Location block = components.getBlocks().iterator().next();
 					block.getBlock().setType( Material.AIR );
@@ -109,7 +111,7 @@ public class ElementalTree {
 	public void onBlockBreak( BlockBreakEvent event ) {
 		Block b = event.getBlock();
 
-		if ( animation == null && components.getBlocks().contains( b.getLocation() ) ) {
+		if ( animation == null && components.getBlocks().contains( b.getLocation() ) && !decay ) {
 			// There's probably a better way to do this but it works.
 			components.getLogs().clear();
 
@@ -125,7 +127,7 @@ public class ElementalTree {
 
 	public void onBlockBreak( BlockExplodeEvent event ) {
 		for( Block b : event.blockList() ) {
-			if ( animation == null && components.getBlocks().contains( b.getLocation() ) ) {
+			if ( animation == null && components.getBlocks().contains( b.getLocation() ) && !decay ) {
 				components.getLogs().clear();
 
 				if ( template.isDropTree() ) {
@@ -143,7 +145,7 @@ public class ElementalTree {
 
 	public void onBlockBreak( EntityExplodeEvent event ) {
 		for( Block b : event.blockList() ) {
-			if ( animation == null && components.getBlocks().contains( b.getLocation() ) ) {
+			if ( animation == null && components.getBlocks().contains( b.getLocation() ) && !decay ) {
 				components.getLogs().clear();
 
 				if ( template.isDropTree() ) {
