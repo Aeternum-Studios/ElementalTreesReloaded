@@ -1,0 +1,8 @@
+# IntelliJ (My IDE)
+
+.idea/*
+*.iml
+
+# Maven (Build Tool being implemented to project)
+
+target/
